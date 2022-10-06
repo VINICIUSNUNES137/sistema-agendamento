@@ -4,6 +4,9 @@
  */
 package br.senai.sp.jandira.ui;
 
+import br.senai.sp.jandira.dao.PlanoDeSaudeDAO;
+import javax.swing.JTable;
+
 /**
  *
  * @author 22282114
@@ -15,6 +18,8 @@ public class HomeFrame extends javax.swing.JFrame {
      */
     public HomeFrame() {
         initComponents();
+        PlanoDeSaudeDAO.criarPlanosDeSaudeTeste();
+        criarTabelaPlanosDeSaude();
     }
 
     /**
@@ -29,14 +34,14 @@ public class HomeFrame extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        buttonSair = new javax.swing.JButton();
         buttonAgenda = new javax.swing.JButton();
         buttonPaciente = new javax.swing.JButton();
         buttonMedicos = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        buttonPlanosDeSaude = new javax.swing.JButton();
         panelPlanoDeSaude = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        scrollTblePlanosDeSaude = new javax.swing.JScrollPane();
+        tablePlanosDeSaude = new javax.swing.JTable();
         buttonAdicionarPlanoDeSaude = new javax.swing.JButton();
         buttonDeletarPlanoDeSaude = new javax.swing.JButton();
         buttonEditarPlanoDeSaude = new javax.swing.JButton();
@@ -63,19 +68,19 @@ public class HomeFrame extends javax.swing.JFrame {
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 1030, 70);
 
-        jButton1.setBackground(new java.awt.Color(250, 250, 250));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 0, 51));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/img/opcao-de-sair.png"))); // NOI18N
-        jButton1.setText("SAIR");
-        jButton1.setToolTipText("");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        buttonSair.setBackground(new java.awt.Color(250, 250, 250));
+        buttonSair.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        buttonSair.setForeground(new java.awt.Color(255, 0, 51));
+        buttonSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/img/opcao-de-sair.png"))); // NOI18N
+        buttonSair.setText("SAIR");
+        buttonSair.setToolTipText("");
+        buttonSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                buttonSairActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(900, 110, 110, 60);
+        getContentPane().add(buttonSair);
+        buttonSair.setBounds(900, 110, 110, 60);
 
         buttonAgenda.setBackground(new java.awt.Color(250, 250, 250));
         buttonAgenda.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -113,24 +118,24 @@ public class HomeFrame extends javax.swing.JFrame {
         getContentPane().add(buttonMedicos);
         buttonMedicos.setBounds(320, 110, 130, 60);
 
-        jButton6.setBackground(new java.awt.Color(250, 250, 250));
-        jButton6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(71, 158, 255));
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/img/estetoscopio (1).png"))); // NOI18N
-        jButton6.setText("PLANOS DE SAÚDE");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        buttonPlanosDeSaude.setBackground(new java.awt.Color(250, 250, 250));
+        buttonPlanosDeSaude.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        buttonPlanosDeSaude.setForeground(new java.awt.Color(71, 158, 255));
+        buttonPlanosDeSaude.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/img/estetoscopio (1).png"))); // NOI18N
+        buttonPlanosDeSaude.setText("PLANOS DE SAÚDE");
+        buttonPlanosDeSaude.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                buttonPlanosDeSaudeActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton6);
-        jButton6.setBounds(640, 110, 190, 60);
+        getContentPane().add(buttonPlanosDeSaude);
+        buttonPlanosDeSaude.setBounds(640, 110, 190, 60);
 
         panelPlanoDeSaude.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " PLANOS DE SAÚDE  ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 3, 14), new java.awt.Color(51, 153, 255))); // NOI18N
         panelPlanoDeSaude.setToolTipText("Planos de Saúde");
         panelPlanoDeSaude.setLayout(null);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablePlanosDeSaude.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -141,10 +146,10 @@ public class HomeFrame extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        scrollTblePlanosDeSaude.setViewportView(tablePlanosDeSaude);
 
-        panelPlanoDeSaude.add(jScrollPane1);
-        jScrollPane1.setBounds(30, 30, 960, 230);
+        panelPlanoDeSaude.add(scrollTblePlanosDeSaude);
+        scrollTblePlanosDeSaude.setBounds(30, 30, 960, 230);
 
         buttonAdicionarPlanoDeSaude.setBackground(new java.awt.Color(250, 250, 250));
         buttonAdicionarPlanoDeSaude.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -200,9 +205,9 @@ public class HomeFrame extends javax.swing.JFrame {
         setBounds(0, 0, 1042, 707);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void buttonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSairActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_buttonSairActionPerformed
 
     private void buttonAgendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAgendaActionPerformed
         // TODO add your handling code here:
@@ -220,9 +225,9 @@ public class HomeFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_buttonAdicionarPlanoDeSaudeActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void buttonPlanosDeSaudeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPlanosDeSaudeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_buttonPlanosDeSaudeActionPerformed
 
     private void buttonEspecialidades1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEspecialidades1ActionPerformed
         // TODO add your handling code here:
@@ -245,13 +250,33 @@ public class HomeFrame extends javax.swing.JFrame {
     private javax.swing.JButton buttonEspecialidades1;
     private javax.swing.JButton buttonMedicos;
     private javax.swing.JButton buttonPaciente;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton6;
+    private javax.swing.JButton buttonPlanosDeSaude;
+    private javax.swing.JButton buttonSair;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JPanel panelPlanoDeSaude;
+    private javax.swing.JScrollPane scrollTblePlanosDeSaude;
+    private javax.swing.JTable tablePlanosDeSaude;
     // End of variables declaration//GEN-END:variables
+
+    private void criarTabelaPlanosDeSaude() {
+        tablePlanosDeSaude.setModel(PlanoDeSaudeDAO.getTabelModel());
+
+        //Desativar o redimensionamento da JTABLE
+        tablePlanosDeSaude.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        
+        //Definir a largura de cada coluna
+        tablePlanosDeSaude.getColumnModel().getColumn(0).setPreferredWidth(100);
+        tablePlanosDeSaude.getColumnModel().getColumn(1).setPreferredWidth(400);
+        tablePlanosDeSaude.getColumnModel().getColumn(2).setPreferredWidth(457);
+        
+        //impedir e/ou bloquear a movimentação das colunas
+        tablePlanosDeSaude.getTableHeader().setReorderingAllowed(false);
+        
+        //bloquear a edição das céluas
+        tablePlanosDeSaude.setDefaultEditor(Object.class, null);
+        
+    }
+
 }

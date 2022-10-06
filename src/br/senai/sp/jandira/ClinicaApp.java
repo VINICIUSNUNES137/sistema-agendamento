@@ -9,9 +9,6 @@ public class ClinicaApp {
         HomeFrame home = new HomeFrame();
         home.setResizable(false);
         home.setVisible(true);
-
-        
-        
         
     }
 
