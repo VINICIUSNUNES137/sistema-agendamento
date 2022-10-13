@@ -51,11 +51,20 @@ public class TesteDao {
 
         }
         
-        int b[][]= new int[4][5];
+//        int b[][]= new int[4][5];
+//        
+//        
+//        int a[][] = {{1, 2 ,3}, {4, 5, 6}, {7, 8, 0}, {0, 0, 0}};
+//        
         
-        
-        int a[][] = {{1, 2 ,3}, {4, 5, 6}, {7, 8, 0}, {0, 0, 0}};
-        
+        PlanoDeSaudeDAO.excluir(101);
+                System.out.println("---------após exclusão----------");
+        for (PlanoDeSaude p : PlanoDeSaudeDAO.listarTodos()) {
+            System.out.println("Código: " + p.getCodigo());
+            System.out.println("Operadora: " + p.getOperadora());
+            System.out.println("-------------------");
+
+        }
 
 //		
 //		PlanoDeSaudeDAO dao = new PlanoDeSaudeDAO();

@@ -3,6 +3,7 @@ package br.senai.sp.jandira.dao;
 import java.util.ArrayList;
 
 import br.senai.sp.jandira.model.PlanoDeSaude;
+import java.util.Objects;
 import javax.swing.table.DefaultTableModel;
 
 public class PlanoDeSaudeDAO {
@@ -20,6 +21,16 @@ public class PlanoDeSaudeDAO {
 
     public static void gravar(PlanoDeSaude planoDeSaude) {
         planos.add(planoDeSaude);
+    }
+
+    public static boolean excluir(Integer codigo) {
+        for (PlanoDeSaude p : planos) {
+            if (Objects.equals(p.getCodigo(), codigo)) {
+                planos.remove(p);
+                return true;
+            }
+        }
+        return false;
     }
 
     public static ArrayList<PlanoDeSaude> listarTodos() {
@@ -54,14 +65,14 @@ public class PlanoDeSaudeDAO {
             dados[i][2] = p.getTipoDoPlano();
             i++;
         }
-        
+
         //Definir um vetor coom os nomes das colunas da tabela
         String[] titulos = {"Código", "Nome da Operadora", "Tipo do Plano"};
-        
+
         //criar um modelo que será utilizado pela JTable
         //para exibir os dados dos planos
         DefaultTableModel tableModel = new DefaultTableModel(dados, titulos);
-        
+
         return tableModel;
 
     }
