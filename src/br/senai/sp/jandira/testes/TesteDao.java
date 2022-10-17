@@ -56,17 +56,20 @@ public class TesteDao {
 //        
 //        int a[][] = {{1, 2 ,3}, {4, 5, 6}, {7, 8, 0}, {0, 0, 0}};
 //        
-        
-        PlanoDeSaudeDAO.excluir(101);
-                System.out.println("---------após exclusão----------");
-        for (PlanoDeSaude p : PlanoDeSaudeDAO.listarTodos()) {
-            System.out.println("Código: " + p.getCodigo());
-            System.out.println("Operadora: " + p.getOperadora());
-            System.out.println("-------------------");
+//        
+//        PlanoDeSaudeDAO.excluir(101);
+//                System.out.println("---------após exclusão----------");
+//        for (PlanoDeSaude p : PlanoDeSaudeDAO.listarTodos()) {
+//            System.out.println("Código: " + p.getCodigo());
+//            System.out.println("Operadora: " + p.getOperadora());
+//            System.out.println("-------------------");
+//
+//        }
 
-        }
-
-//		
+        //testar o método getPlanoDeSaude do DAO
+        PlanoDeSaude p = PlanoDeSaudeDAO.getPlanoDeSaude(103);
+        System.out.println("Código: " + p.getCodigo());
+        System.out.println("Operadora: " + p.getOperadora());
 //		PlanoDeSaudeDAO dao = new PlanoDeSaudeDAO();
 //		dao.gravar(plano1);
 //		dao.gravar(plano2);
@@ -77,6 +80,10 @@ public class TesteDao {
 //			System.out.println(plano.getOperadora());
 //		}
 //		
+
+        
+
+
     }
 
 }

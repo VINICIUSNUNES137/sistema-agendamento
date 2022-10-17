@@ -5,6 +5,8 @@
 package br.senai.sp.jandira.ui;
 
 import br.senai.sp.jandira.dao.PlanoDeSaudeDAO;
+import br.senai.sp.jandira.model.PlanoDeSaude;
+import br.senai.sp.jandira.model.TipoOperacao;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
@@ -14,9 +16,8 @@ import javax.swing.JTable;
  */
 public class PanelPlanosDeSaude extends javax.swing.JPanel {
 
-    /**
-     * Creates new form PanelPlanosDeSaude
-     */
+    int linha;
+
     public PanelPlanosDeSaude() {
         initComponents();
         criarTabelaPlanosDeSaude();
@@ -103,7 +104,10 @@ public class PanelPlanosDeSaude extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonAdicionarPlanoDeSaude1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAdicionarPlanoDeSaude1ActionPerformed
-        DialogPlanosDeSaude dialogPlanosDeSaude = new DialogPlanosDeSaude(null, true);
+        DialogPlanosDeSaude dialogPlanosDeSaude = new DialogPlanosDeSaude(null,
+                true,
+                TipoOperacao.ADICIONAR,
+                null);
         dialogPlanosDeSaude.setVisible(true);
 
         criarTabelaPlanosDeSaude(); //refresh
@@ -112,20 +116,14 @@ public class PanelPlanosDeSaude extends javax.swing.JPanel {
 
     private void buttonDeletarPlanoDeSaude1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeletarPlanoDeSaude1ActionPerformed
 
-//        int resposta = JOptionPane.showConfirmDialog(
-//                this,
-//                "Você confirma a exclusão do plano de Saúde selecionado?",
-//                "Plano De Saúde",
-//                JOptionPane.QUESTION_MESSAGE, JOptionPane.YES_NO_OPTION);
+        //obtendo o indice da linha selecionado na tabela
+        linha = tablePlanosDeSaude1.getSelectedRow();
 
-        int linha = tablePlanosDeSaude1.getSelectedRow();
-
+        //verificando se a linha é diferente de -1 (Se foi selecionada ou não)
         if (linha != -1) {
             //excluir a linha do plano
-            String codigoStr = tablePlanosDeSaude1.getValueAt(linha, 0).toString();
-            Integer codigo = Integer.valueOf(codigoStr);
-            PlanoDeSaudeDAO.excluir(codigo);
-            criarTabelaPlanosDeSaude();
+            excluir();
+
         } else {
             JOptionPane.showMessageDialog(
                     this,
@@ -137,9 +135,58 @@ public class PanelPlanosDeSaude extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_buttonDeletarPlanoDeSaude1ActionPerformed
 
+    private void excluir() {
+
+        int resposta = JOptionPane.showConfirmDialog(
+                this,
+                "Você confirma a exclusão do plano de Saúde selecionado?",
+                "Plano De Saúde",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE);
+
+        if (resposta == 0) {
+
+            PlanoDeSaudeDAO.excluir(getCodigo());
+            criarTabelaPlanosDeSaude();
+        }
+    }
+
+    private Integer getCodigo() {
+
+        String codigoStr = tablePlanosDeSaude1.getValueAt(linha, 0).toString();
+        return Integer.valueOf(codigoStr);
+
+    }
+
     private void buttonEditarPlanoDeSaude1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditarPlanoDeSaude1ActionPerformed
-        // TODO add your handling code here:
+
+        linha = tablePlanosDeSaude1.getSelectedRow();
+
+        if (linha != -1) {
+            editar();
+        } else {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Por favor selecione o plano de saúde a ser alterado",
+                    "Planos De Saúde",
+                    JOptionPane.WARNING_MESSAGE);
+        }
+
+
     }//GEN-LAST:event_buttonEditarPlanoDeSaude1ActionPerformed
+
+    private void editar() {
+
+        PlanoDeSaude planoDeSaude = PlanoDeSaudeDAO.getPlanoDeSaude(getCodigo());
+
+        DialogPlanosDeSaude dialogPlanosDeSaude = new DialogPlanosDeSaude(
+                null,
+                true,
+                TipoOperacao.ALTERAR,
+                planoDeSaude
+        );
+        dialogPlanosDeSaude.setVisible(true);
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

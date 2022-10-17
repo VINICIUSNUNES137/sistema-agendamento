@@ -33,6 +33,18 @@ public class PlanoDeSaudeDAO {
         return false;
     }
 
+    public static PlanoDeSaude getPlanoDeSaude(Integer codigo) {
+        
+        for(PlanoDeSaude p : planos) {
+            if(p.getCodigo().equals(codigo)){
+                return p;
+            }
+        }
+        
+        
+        return null;      
+    }
+
     public static ArrayList<PlanoDeSaude> listarTodos() {
         return planos;
 
