@@ -13,7 +13,7 @@ public class DialogPlanosDeSaude extends javax.swing.JDialog {
 
     private TipoOperacao tipoOperacao;
     private PlanoDeSaude planoDeSaude;
-    
+
     public DialogPlanosDeSaude(
             java.awt.Frame parent,
             boolean modal,
@@ -24,29 +24,28 @@ public class DialogPlanosDeSaude extends javax.swing.JDialog {
         initComponents();
         this.tipoOperacao = tipoOperacao;
         this.planoDeSaude = planoDeSaude;
-        
+
         //PREENCHIMENTO CASO FOR ALTERAR
-        
         if (tipoOperacao == tipoOperacao.ALTERAR) {
             preencherFormulario();
         }
-        
+
     }
 
     private void preencherFormulario() {
-        
+        labelTitulo.setText("Planos de Saúde " + tipoOperacao);
+        labelTitulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/img/editar-texto.png"))); // NOI18N
         textCodigo.setText(planoDeSaude.getCodigo().toString());
         textNomeDaOperadora.setText(planoDeSaude.getOperadora());
         textTipoDoPlano.setText(planoDeSaude.getTipoDoPlano());
-        
+
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         labelTitulo = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         labelCodigo = new javax.swing.JLabel();
@@ -65,15 +64,12 @@ public class DialogPlanosDeSaude extends javax.swing.JDialog {
         jPanel1.setBackground(new java.awt.Color(51, 153, 255));
         jPanel1.setLayout(null);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/img/add (1).png"))); // NOI18N
-        jPanel1.add(jLabel1);
-        jLabel1.setBounds(20, 20, 32, 32);
-
         labelTitulo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         labelTitulo.setForeground(new java.awt.Color(250, 250, 250));
-        labelTitulo.setText("Planos De Saúde - ADICIONAR");
+        labelTitulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/img/add (1).png"))); // NOI18N
+        labelTitulo.setText(" Planos De Saúde - ADICIONAR");
         jPanel1.add(labelTitulo);
-        labelTitulo.setBounds(60, 20, 280, 30);
+        labelTitulo.setBounds(60, 10, 320, 50);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 640, 70);
@@ -146,6 +142,17 @@ public class DialogPlanosDeSaude extends javax.swing.JDialog {
 
     private void buttonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvarActionPerformed
         //criar um obj plano de saude
+
+        if (tipoOperacao == TipoOperacao.ADICIONAR) {
+            gravar();
+        } else {
+            atualizar();
+        }
+
+
+    }//GEN-LAST:event_buttonSalvarActionPerformed
+
+    private void gravar() {
         PlanoDeSaude planoDeSaude = new PlanoDeSaude();
         planoDeSaude.setOperadora(textNomeDaOperadora.getText());
         planoDeSaude.setTipoDoPlano(textTipoDoPlano.getText());
@@ -160,7 +167,15 @@ public class DialogPlanosDeSaude extends javax.swing.JDialog {
             dispose();
         }
         // TODO add your handling code here:
-    }//GEN-LAST:event_buttonSalvarActionPerformed
+    }
+    
+    private void atualizar() {
+        planoDeSaude.setOperadora(textNomeDaOperadora.getText());
+        planoDeSaude.setTipoDoPlano(textTipoDoPlano.getText());
+        PlanoDeSaudeDAO.atualizar(planoDeSaude);
+        JOptionPane.showMessageDialog(null, "Plano de Saúde foi atualizado com sucesso!", "Plano De Saúde ", JOptionPane.INFORMATION_MESSAGE);
+        dispose();
+    }
 
     private boolean validarCadastro() {
 //        if (textNomeDaOperadora.getText().isEmpty() && textTipoDoPlano.getText().isEmpty()) {
@@ -197,7 +212,6 @@ public class DialogPlanosDeSaude extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonCancelar;
     private javax.swing.JButton buttonSalvar;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel labelCodigo;

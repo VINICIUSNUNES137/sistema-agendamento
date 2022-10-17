@@ -130,7 +130,7 @@ public class HomeFrame extends javax.swing.JFrame {
             }
         });
         getContentPane().add(buttonMedicos);
-        buttonMedicos.setBounds(380, 110, 120, 60);
+        buttonMedicos.setBounds(380, 110, 140, 60);
 
         buttonPlanosDeSaude.setBackground(new java.awt.Color(250, 250, 250));
         buttonPlanosDeSaude.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -142,7 +142,7 @@ public class HomeFrame extends javax.swing.JFrame {
             }
         });
         getContentPane().add(buttonPlanosDeSaude);
-        buttonPlanosDeSaude.setBounds(690, 110, 190, 60);
+        buttonPlanosDeSaude.setBounds(710, 110, 190, 60);
 
         panelHome.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " HOME ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 3, 14), new java.awt.Color(71, 158, 255))); // NOI18N
         panelHome.setToolTipText("Planos de Saúde");
@@ -203,7 +203,7 @@ public class HomeFrame extends javax.swing.JFrame {
             }
         });
         getContentPane().add(buttonEspecialidades1);
-        buttonEspecialidades1.setBounds(510, 110, 170, 60);
+        buttonEspecialidades1.setBounds(530, 110, 170, 60);
 
         buttonAgenda1.setBackground(new java.awt.Color(250, 250, 250));
         buttonAgenda1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N

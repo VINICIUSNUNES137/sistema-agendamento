@@ -18,6 +18,16 @@ public class PlanoDeSaudeDAO {
     public PlanoDeSaudeDAO() {
 
     }
+    
+    public static void atualizar(PlanoDeSaude planoDeSaude) {
+        for (PlanoDeSaude p : planos) {
+            if (p.getCodigo().equals(planoDeSaude.getCodigo())) {
+                planos.set(planos.indexOf(p), planoDeSaude);
+                break;
+            }
+            
+        }
+    }
 
     public static void gravar(PlanoDeSaude planoDeSaude) {
         planos.add(planoDeSaude);

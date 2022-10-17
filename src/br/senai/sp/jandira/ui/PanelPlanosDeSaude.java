@@ -89,7 +89,7 @@ public class PanelPlanosDeSaude extends javax.swing.JPanel {
 
         buttonEditarPlanoDeSaude1.setBackground(new java.awt.Color(250, 250, 250));
         buttonEditarPlanoDeSaude1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        buttonEditarPlanoDeSaude1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/img/edit-text.png"))); // NOI18N
+        buttonEditarPlanoDeSaude1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/img/editar.png"))); // NOI18N
         buttonEditarPlanoDeSaude1.setToolTipText("Editar um plano de saúde selecionado");
         buttonEditarPlanoDeSaude1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -186,6 +186,8 @@ public class PanelPlanosDeSaude extends javax.swing.JPanel {
                 planoDeSaude
         );
         dialogPlanosDeSaude.setVisible(true);
+        
+        criarTabelaPlanosDeSaude();
     }
 
 

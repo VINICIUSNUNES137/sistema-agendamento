@@ -124,7 +124,7 @@
               <Font name="Segoe UI" size="14" style="0"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/br/senai/sp/jandira/img/edit-text.png"/>
+              <Image iconType="3" name="/br/senai/sp/jandira/img/editar.png"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Editar um plano de sa&#xfa;de selecionado"/>
           </Properties>
