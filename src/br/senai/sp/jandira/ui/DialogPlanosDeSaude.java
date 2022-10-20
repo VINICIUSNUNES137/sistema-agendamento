@@ -168,13 +168,17 @@ public class DialogPlanosDeSaude extends javax.swing.JDialog {
         }
         // TODO add your handling code here:
     }
-    
+
     private void atualizar() {
         planoDeSaude.setOperadora(textNomeDaOperadora.getText());
         planoDeSaude.setTipoDoPlano(textTipoDoPlano.getText());
-        PlanoDeSaudeDAO.atualizar(planoDeSaude);
-        JOptionPane.showMessageDialog(null, "Plano de Saúde foi atualizado com sucesso!", "Plano De Saúde ", JOptionPane.INFORMATION_MESSAGE);
-        dispose();
+
+        if (validarCadastro()) {
+            PlanoDeSaudeDAO.atualizar(planoDeSaude);
+            JOptionPane.showMessageDialog(null, "Plano de Saúde foi atualizado com sucesso!", "Plano De Saúde ", JOptionPane.INFORMATION_MESSAGE);
+            dispose();
+        }
+
     }
 
     private boolean validarCadastro() {
