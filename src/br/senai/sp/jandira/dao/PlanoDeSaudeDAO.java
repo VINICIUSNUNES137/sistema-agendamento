@@ -13,11 +13,11 @@ public class PlanoDeSaudeDAO {
 
     public PlanoDeSaudeDAO(PlanoDeSaude planoDeSaude) {
         this.planos.add(planoDeSaude);
-    }
+    }//ver
 
     public PlanoDeSaudeDAO() {
 
-    }
+    }//construtor root
     
     public static void atualizar(PlanoDeSaude planoDeSaude) {
         for (PlanoDeSaude p : planos) {
@@ -30,7 +30,7 @@ public class PlanoDeSaudeDAO {
     }
 
     public static void gravar(PlanoDeSaude planoDeSaude) {
-        planos.add(planoDeSaude);
+        planos.add(planoDeSaude);//
     }
 
     public static boolean excluir(Integer codigo) {
@@ -41,7 +41,7 @@ public class PlanoDeSaudeDAO {
             }
         }
         return false;
-    }
+    }//
 
     public static PlanoDeSaude getPlanoDeSaude(Integer codigo) {
         
@@ -49,11 +49,9 @@ public class PlanoDeSaudeDAO {
             if(p.getCodigo().equals(codigo)){
                 return p;
             }
-        }
-        
-        
+        }   
         return null;      
-    }
+    } //entender :/
 
     public static ArrayList<PlanoDeSaude> listarTodos() {
         return planos;
@@ -72,6 +70,8 @@ public class PlanoDeSaudeDAO {
         planos.add(p4);
     }
 
+    
+    //GUI
     public static DefaultTableModel getTabelModel() {
 
         //matriz que receberá os planosDeSaude

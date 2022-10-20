@@ -33,7 +33,7 @@ public class DialogPlanosDeSaude extends javax.swing.JDialog {
     }
 
     private void preencherFormulario() {
-        labelTitulo.setText("Planos de Saúde " + tipoOperacao);
+        labelTitulo.setText("   Planos de Saúde - " + tipoOperacao);
         labelTitulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/img/editar-texto.png"))); // NOI18N
         textCodigo.setText(planoDeSaude.getCodigo().toString());
         textNomeDaOperadora.setText(planoDeSaude.getOperadora());
@@ -67,7 +67,7 @@ public class DialogPlanosDeSaude extends javax.swing.JDialog {
         labelTitulo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         labelTitulo.setForeground(new java.awt.Color(250, 250, 250));
         labelTitulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/img/add (1).png"))); // NOI18N
-        labelTitulo.setText(" Planos De Saúde - ADICIONAR");
+        labelTitulo.setText("    Planos De Saúde - ADICIONAR");
         jPanel1.add(labelTitulo);
         labelTitulo.setBounds(60, 10, 320, 50);
 

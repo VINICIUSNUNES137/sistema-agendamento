@@ -17,7 +17,7 @@ public class PlanoDeSaude {
         this.operadora = operadora;
         this.tipoDoPlano = tipoDoPlano;
         atualizarCodigo();
-    }
+    } 
 
     public PlanoDeSaude() {
         atualizarCodigo();
@@ -30,7 +30,7 @@ public class PlanoDeSaude {
     private void atualizarCodigo() {
         this.codigo = contador;
         contador++;
-    }
+    } //esse
 
     public void setOperadora(String operadora) {
         this.operadora = operadora;

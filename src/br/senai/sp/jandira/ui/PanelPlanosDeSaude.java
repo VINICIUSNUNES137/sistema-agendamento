@@ -61,7 +61,7 @@ public class PanelPlanosDeSaude extends javax.swing.JPanel {
         scrollTblePlanosDeSaude1.setViewportView(tablePlanosDeSaude1);
 
         panelPlanoDeSaude.add(scrollTblePlanosDeSaude1);
-        scrollTblePlanosDeSaude1.setBounds(30, 30, 960, 230);
+        scrollTblePlanosDeSaude1.setBounds(30, 30, 960, 270);
 
         buttonAdicionarPlanoDeSaude1.setBackground(new java.awt.Color(250, 250, 250));
         buttonAdicionarPlanoDeSaude1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -73,7 +73,7 @@ public class PanelPlanosDeSaude extends javax.swing.JPanel {
             }
         });
         panelPlanoDeSaude.add(buttonAdicionarPlanoDeSaude1);
-        buttonAdicionarPlanoDeSaude1.setBounds(800, 380, 60, 60);
+        buttonAdicionarPlanoDeSaude1.setBounds(790, 380, 60, 60);
 
         buttonDeletarPlanoDeSaude1.setBackground(new java.awt.Color(250, 250, 250));
         buttonDeletarPlanoDeSaude1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -85,7 +85,7 @@ public class PanelPlanosDeSaude extends javax.swing.JPanel {
             }
         });
         panelPlanoDeSaude.add(buttonDeletarPlanoDeSaude1);
-        buttonDeletarPlanoDeSaude1.setBounds(940, 380, 60, 60);
+        buttonDeletarPlanoDeSaude1.setBounds(930, 380, 60, 60);
 
         buttonEditarPlanoDeSaude1.setBackground(new java.awt.Color(250, 250, 250));
         buttonEditarPlanoDeSaude1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -97,7 +97,7 @@ public class PanelPlanosDeSaude extends javax.swing.JPanel {
             }
         });
         panelPlanoDeSaude.add(buttonEditarPlanoDeSaude1);
-        buttonEditarPlanoDeSaude1.setBounds(870, 380, 60, 60);
+        buttonEditarPlanoDeSaude1.setBounds(860, 380, 60, 60);
 
         add(panelPlanoDeSaude);
         panelPlanoDeSaude.setBounds(0, 0, 1010, 450);
@@ -105,14 +105,30 @@ public class PanelPlanosDeSaude extends javax.swing.JPanel {
 
     private void buttonAdicionarPlanoDeSaude1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAdicionarPlanoDeSaude1ActionPerformed
         DialogPlanosDeSaude dialogPlanosDeSaude = new DialogPlanosDeSaude(null,
-                true,
-                TipoOperacao.ADICIONAR,
-                null);
+            true,
+            TipoOperacao.ADICIONAR,
+            null);
         dialogPlanosDeSaude.setVisible(true);
 
         criarTabelaPlanosDeSaude(); //refresh
         // TODO add your handling code here:
     }//GEN-LAST:event_buttonAdicionarPlanoDeSaude1ActionPerformed
+
+    private void buttonEditarPlanoDeSaude1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditarPlanoDeSaude1ActionPerformed
+
+        linha = tablePlanosDeSaude1.getSelectedRow();
+
+        if (linha != -1) {
+            editar();
+        } else {
+            JOptionPane.showMessageDialog(
+                this,
+                "Por favor selecione o plano de saúde a ser alterado",
+                "Planos De Saúde",
+                JOptionPane.WARNING_MESSAGE);
+        }
+
+    }//GEN-LAST:event_buttonEditarPlanoDeSaude1ActionPerformed
 
     private void buttonDeletarPlanoDeSaude1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeletarPlanoDeSaude1ActionPerformed
 
@@ -126,10 +142,10 @@ public class PanelPlanosDeSaude extends javax.swing.JPanel {
 
         } else {
             JOptionPane.showMessageDialog(
-                    this,
-                    "Selecione o plano a ser excluído!",
-                    "Plano De Saúde",
-                    JOptionPane.ERROR_MESSAGE);
+                this,
+                "Selecione o plano a ser excluído!",
+                "Plano De Saúde",
+                JOptionPane.ERROR_MESSAGE);
         }
 
         // TODO add your handling code here:
@@ -157,23 +173,6 @@ public class PanelPlanosDeSaude extends javax.swing.JPanel {
         return Integer.valueOf(codigoStr);
 
     }
-
-    private void buttonEditarPlanoDeSaude1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditarPlanoDeSaude1ActionPerformed
-
-        linha = tablePlanosDeSaude1.getSelectedRow();
-
-        if (linha != -1) {
-            editar();
-        } else {
-            JOptionPane.showMessageDialog(
-                    this,
-                    "Por favor selecione o plano de saúde a ser alterado",
-                    "Planos De Saúde",
-                    JOptionPane.WARNING_MESSAGE);
-        }
-
-
-    }//GEN-LAST:event_buttonEditarPlanoDeSaude1ActionPerformed
 
     private void editar() {
 

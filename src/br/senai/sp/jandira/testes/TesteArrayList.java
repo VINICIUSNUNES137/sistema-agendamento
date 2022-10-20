@@ -95,28 +95,28 @@ public class TesteArrayList {
 		
 		System.out.println("-----------FAZENDO------------");
 		
-		Especialidade especialidade1 = new Especialidade();
-		especialidade1.setNome("Cardiologia");
-		especialidade1.setDescricao("Cuida do Coração");
-		Especialidade especialidade2 = new Especialidade();
-		especialidade2.setNome("Clinico Geral");
-		especialidade2.setDescricao("Cuida de tudo");
-		Especialidade especialidade3 = new Especialidade();
-		especialidade3.setNome("Neurologista");
-		especialidade3.setDescricao("Cuida do cérebro");
-		Especialidade especialidade4 = new Especialidade();
-		especialidade4.setNome("Pediatra");
-		especialidade4.setDescricao("Cuida das crianças");
+//		Especialidade especialidade1 = new Especialidade();
+//		especialidade1.setNome("Cardiologia");
+//		especialidade1.setDescricao("Cuida do Coração");
+//		Especialidade especialidade2 = new Especialidade();
+//		especialidade2.setNome("Clinico Geral");
+//		especialidade2.setDescricao("Cuida de tudo");
+//		Especialidade especialidade3 = new Especialidade();
+//		especialidade3.setNome("Neurologista");
+//		especialidade3.setDescricao("Cuida do cérebro");
+//		Especialidade especialidade4 = new Especialidade();
+//		especialidade4.setNome("Pediatra");
+//		especialidade4.setDescricao("Cuida das crianças");
 		
-		ArrayList<Especialidade> listaDeEspecialidades = new ArrayList<>();
-		listaDeEspecialidades.add(especialidade1);
-		listaDeEspecialidades.add(especialidade2);
-		listaDeEspecialidades.add(especialidade3);
-		listaDeEspecialidades.add(especialidade4);
+//		ArrayList<Especialidade> listaDeEspecialidades = new ArrayList<>();
+//		listaDeEspecialidades.add(especialidade1);
+//		listaDeEspecialidades.add(especialidade2);
+//		listaDeEspecialidades.add(especialidade3);
+//		listaDeEspecialidades.add(especialidade4);
 		
-		for (Especialidade especialidade : listaDeEspecialidades) {
-			System.out.printf("%s => %s\n", especialidade.getNome(), especialidade.getDescricao());
-		}
+//		for (Especialidade especialidade : listaDeEspecialidades) {
+//			System.out.printf("%s => %s\n", especialidade.getNome(), especialidade.getDescricao());
+//		}
 		
 		
 		
