@@ -62,6 +62,7 @@ public class HomeFrame extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(250, 250, 250));
@@ -180,7 +181,7 @@ public class HomeFrame extends javax.swing.JFrame {
         jLabel3.setText("CONTATOS:");
         jLabel3.setToolTipText("");
         panelHome.add(jLabel3);
-        jLabel3.setBounds(90, 200, 150, 40);
+        jLabel3.setBounds(820, 160, 150, 40);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(71, 158, 255));
@@ -194,7 +195,7 @@ public class HomeFrame extends javax.swing.JFrame {
         jLabel5.setText("SITE: www.sisacon.com.br");
         jLabel5.setToolTipText("");
         panelHome.add(jLabel5);
-        jLabel5.setBounds(90, 270, 200, 30);
+        jLabel5.setBounds(790, 230, 200, 30);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(110, 110, 110));
@@ -208,14 +209,18 @@ public class HomeFrame extends javax.swing.JFrame {
         jLabel8.setText("E-MAIL: suporte@sisacon.com.br");
         jLabel8.setToolTipText("");
         panelHome.add(jLabel8);
-        jLabel8.setBounds(90, 230, 290, 30);
+        jLabel8.setBounds(740, 190, 290, 30);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(110, 110, 110));
         jLabel7.setText("TEL: (11) 95555-5555");
         jLabel7.setToolTipText("");
         panelHome.add(jLabel7);
-        jLabel7.setBounds(90, 250, 200, 30);
+        jLabel7.setBounds(820, 210, 200, 30);
+
+        jPanel2.setBackground(new java.awt.Color(71, 158, 255));
+        panelHome.add(jPanel2);
+        jPanel2.setBounds(5, 150, 1000, 3);
 
         getContentPane().add(panelHome);
         panelHome.setBounds(10, 210, 1010, 450);
@@ -289,6 +294,7 @@ public class HomeFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel panelHome;
     // End of variables declaration//GEN-END:variables
 

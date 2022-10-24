@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
 package br.senai.sp.jandira.ui;
 
 import br.senai.sp.jandira.dao.PlanoDeSaudeDAO;
@@ -175,21 +171,17 @@ public class DialogPlanosDeSaude extends javax.swing.JDialog {
 
         if (validarCadastro()) {
             PlanoDeSaudeDAO.atualizar(planoDeSaude);
-            JOptionPane.showMessageDialog(null, "Plano de Saúde foi atualizado com sucesso!", "Plano De Saúde ", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(
+                    null, 
+                    "Plano de Saúde foi atualizado com sucesso!", 
+                    "Plano De Saúde ", 
+                    JOptionPane.INFORMATION_MESSAGE);
             dispose();
         }
 
     }
 
     private boolean validarCadastro() {
-//        if (textNomeDaOperadora.getText().isEmpty() && textTipoDoPlano.getText().isEmpty()) {
-//            JOptionPane.showMessageDialog(
-//                    this, 
-//                    "Por favor preencha o nome da Operadora e Tipo do Plano", 
-//                    "Plano de Saúde", 
-//                    JOptionPane.ERROR_MESSAGE);
-//            return false;
-//        }
 
         if (textNomeDaOperadora.getText().isEmpty()) {
             JOptionPane.showMessageDialog(

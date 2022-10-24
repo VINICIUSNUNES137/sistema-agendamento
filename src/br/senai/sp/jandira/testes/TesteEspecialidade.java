@@ -28,7 +28,7 @@ public class TesteEspecialidade {
             System.out.println("----------------");
         }
         
-        EspecialidadeDAO.excluir(especialidade2);
+        //EspecialidadeDAO.excluir(especialidade2);
         
               System.out.println("------depois----------");
 

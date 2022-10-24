@@ -21,6 +21,16 @@ public class EspecialidadeDAO {
     public static void gravar(Especialidade especialidade) {
         especialidades.add(especialidade);
     }
+    
+       public static Especialidade getEspecialidade (Integer codigo) {
+        
+        for(Especialidade e : especialidades) {
+            if(e.getCodigo().equals(codigo)){
+                return e;
+            }
+        }   
+        return null;      
+    } 
 
     public static void atualizar(Especialidade especialidade) {
         for (Especialidade e : especialidades) {
@@ -31,10 +41,11 @@ public class EspecialidadeDAO {
         }
     }
 
-    public static boolean excluir(Especialidade especialidade) {
+    public static boolean excluir(Integer codigo) {
 
         for (Especialidade e : especialidades) {
-            if (Objects.equals(e.getCodigo(), especialidade.getCodigo())) {
+                    
+            if (e.getCodigo().equals(codigo)) {
                 especialidades.remove(e);
                 return true;
             }
@@ -52,41 +63,35 @@ public class EspecialidadeDAO {
         Especialidade e1 = new Especialidade("Pediatra", "cuida das crianças");
         Especialidade e2 = new Especialidade("Neurologista", "cuida dos cérebros");
         Especialidade e3 = new Especialidade("Ortopedista", "cuida dos ossos");
+        Especialidade e4 = new Especialidade("Dermatologista", "cuida da pele");
+        Especialidade e5 = new Especialidade("Oftalmologista", "cuida dos olhos");
+        Especialidade e6 = new Especialidade("Nutricionista", "cuida da alimentação");
+        Especialidade e7 = new Especialidade("Ortopedista", "cuida dos ossos");
+        Especialidade e8 = new Especialidade("Psiquiatra", "cuida da mente");
+        Especialidade e9 = new Especialidade("Fisioterapeuta", "cuida da restruturação da movimentação do corpo");
+        Especialidade e10 = new Especialidade("Gastroenterologista", "cuida do aparelho digestivo");
+        Especialidade e11 = new Especialidade("Ergometrista", "cuida da postura");
+        Especialidade e12 = new Especialidade("Anestesiologista", "cuida da dor com base em anestésicos");
+        Especialidade e13 = new Especialidade("Endócrinologista", "cuida do sistema endócrino");
 
         //gravar
         EspecialidadeDAO.gravar(e0);
         EspecialidadeDAO.gravar(e1);
         EspecialidadeDAO.gravar(e2);
         EspecialidadeDAO.gravar(e3);
+        EspecialidadeDAO.gravar(e4);
+        EspecialidadeDAO.gravar(e5);
+        EspecialidadeDAO.gravar(e6);
+        EspecialidadeDAO.gravar(e7);
+        EspecialidadeDAO.gravar(e8);
+        EspecialidadeDAO.gravar(e9);
+        EspecialidadeDAO.gravar(e10);
+        EspecialidadeDAO.gravar(e11);
+        EspecialidadeDAO.gravar(e12);
+        EspecialidadeDAO.gravar(e13);
 
     }
 
-//    ublic static DefaultTableModel getTabelModel() {
-//
-//        //matriz que receberá os planosDeSaude
-//        //que serão utilizados na tabela (JTable)
-//        Object[][] dados = new Object[planos.size()][3];
-//
-//        //for each para extrair cada objeto plano de saúde do
-//        //do arraylist planos e separar cada dado na matriz dados
-//        int i = 0;
-//        for (PlanoDeSaude p : planos) {
-//            dados[i][0] = p.getCodigo();
-//            dados[i][1] = p.getOperadora();
-//            dados[i][2] = p.getTipoDoPlano();
-//            i++;
-//        }
-//
-//        //Definir um vetor coom os nomes das colunas da tabela
-//        String[] titulos = {"Código", "Nome da Operadora", "Tipo do Plano"};
-//
-//        //criar um modelo que será utilizado pela JTable
-//        //para exibir os dados dos planos
-//        DefaultTableModel tableModel = new DefaultTableModel(dados, titulos);
-//
-//        return tableModel;
-//
-//    }
     public static DefaultTableModel getTableModel() {
 
         Object[][] dados = new Object[especialidades.size()][3];
