@@ -3,7 +3,7 @@
 
 ![](./img/screenshot.PNG)
 
-## [Clique aqui](./executavel/testeclinica.jar) para baixar o executável.
+## [Clique aqui](https://github.com/VINICIUSNUNES137/sistema-agendamento/raw/main/executavel/testeclinica.jar) para baixar o executável.
 
 ## **SOBRE**
 
