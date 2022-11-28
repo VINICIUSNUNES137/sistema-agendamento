@@ -86,6 +86,7 @@ public class PanelMedico extends javax.swing.JPanel {
                 TipoOperacao.ADICIONAR, 
                 null);
         dialogMedico.setVisible(true);
+        
 
         criarTabelaMedicos();
 

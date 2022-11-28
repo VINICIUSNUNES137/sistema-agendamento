@@ -4,6 +4,7 @@ import br.senai.sp.jandira.dao.MedicoDAO;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 
 public class Medico extends Pessoa {
 
@@ -12,9 +13,8 @@ public class Medico extends Pessoa {
     private static int contador = 100;
     private Integer codigo;
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-    
     public Medico() {
         atualizarCodigo();
     }
@@ -26,10 +26,9 @@ public class Medico extends Pessoa {
         atualizarCodigo();
 
     }
-    
-    //teste
 
-    public Medico(Integer codigo, String nome, String crm, String telefone, String email, String dataDeNascimento) {
+    //teste
+    public Medico(Integer codigo, String nome, String crm, String telefone, String email, String dataDeNascimento, ArrayList<Especialidade> especialidades) {
 
         this.codigo = codigo;
         super.setNome(nome);
@@ -37,6 +36,7 @@ public class Medico extends Pessoa {
         super.setTelefone(telefone);
         super.setEmail(email);
         super.setDataDeNascimento(dataDeNascimento);
+        this.especialidades = especialidades;
         this.contador = codigo;
     }
 
@@ -75,6 +75,11 @@ public class Medico extends Pessoa {
     }
 
     public String getMedicoSeparadoPorPontoEVirgula() {
+
+        String getCodigoEspecialidades = "";
+        for (Especialidade e : especialidades) {
+            getCodigoEspecialidades += e.getCodigo() + ";";
+        }
         return this.codigo
                 + ";"
                 + this.getNome()
@@ -87,7 +92,21 @@ public class Medico extends Pessoa {
                 + ";"
                 + super.getDataDeNascimento()
                 + ";"
-                + this.getEspecialidades();
+                + getCodigoEspecialidades;
+    }
+    
+        public ArrayList<String> getListaDeEspecialidadesDoMedico() {
+        ArrayList<String> dados = new ArrayList<>();
+        for (Especialidade e : especialidades) {
+            dados.add(e.getNome());
+        }
+            DefaultListModel<String> ListaModel = new DefaultListModel<>();
+        
+        ListaModel.addAll(dados);
+        
+        return dados;
+
+    
     }
 
 }

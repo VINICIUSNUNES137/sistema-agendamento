@@ -5,6 +5,7 @@ import br.senai.sp.jandira.dao.MedicoDAO;
 import br.senai.sp.jandira.model.Especialidade;
 import br.senai.sp.jandira.model.Medico;
 import br.senai.sp.jandira.model.TipoOperacao;
+import java.awt.List;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -17,10 +18,16 @@ public class DialogMedico extends javax.swing.JDialog {
     private TipoOperacao tipoOperacao;
     private Medico medico;
 
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
     private DefaultListModel<String> listaEspecialidadesModel = new DefaultListModel<>();
     private Especialidade especialidade = new Especialidade();
-    private ArrayList<Especialidade> especialidades = new ArrayList<>();
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private ArrayList<Especialidade> especialidadesNSelecionadas = EspecialidadeDAO.listarTodos();
+    private ArrayList<String> especialidades = new ArrayList<>();
+
+    private DefaultListModel<String> listaDasEspecialidadesDoMedico = new DefaultListModel<>();
+    private ArrayList<String> selecionadas = new ArrayList<>();
+    private ArrayList<Especialidade> especialidadesSelecionadas = new ArrayList<>();
 
     public DialogMedico(java.awt.Frame parent, boolean modal, TipoOperacao tipoOperacao, Medico medico) {
 
@@ -28,21 +35,12 @@ public class DialogMedico extends javax.swing.JDialog {
         initComponents();
         this.tipoOperacao = tipoOperacao;
         this.medico = medico;
-        carregarListaEspecialidades();
+        atualizarListasEspecialidades();
 
         if (tipoOperacao == tipoOperacao.ALTERAR) {
             preencherFormulario();
+            atualizarListasEspecialidades();
         }
-
-    }
-
-    private void carregarListaEspecialidades() {
-
-        for (Especialidade e : EspecialidadeDAO.listarTodos()) {
-            listaEspecialidadesModel.addElement(e.getNome()); // ADD ELEMENT ACEITA OBJETO :)
-        }
-
-        listaEspecialidade.setModel(listaEspecialidadesModel);
 
     }
 
@@ -156,6 +154,7 @@ public class DialogMedico extends javax.swing.JDialog {
         labelEmail.setBounds(220, 110, 70, 20);
 
         textDataDeNascimento.setBackground(new java.awt.Color(250, 250, 250));
+        textDataDeNascimento.setToolTipText("dd/mm/yyyy");
         panelMedico.add(textDataDeNascimento);
         textDataDeNascimento.setBounds(590, 130, 150, 30);
 
@@ -199,11 +198,21 @@ public class DialogMedico extends javax.swing.JDialog {
 
         buttonEnviarEspecialidade.setBackground(new java.awt.Color(250, 250, 250));
         buttonEnviarEspecialidade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/img/right-arrow-blue.png"))); // NOI18N
+        buttonEnviarEspecialidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonEnviarEspecialidadeActionPerformed(evt);
+            }
+        });
         panelMedico.add(buttonEnviarEspecialidade);
         buttonEnviarEspecialidade.setBounds(320, 260, 80, 40);
 
         buttonVoltarEspecialidade.setBackground(new java.awt.Color(250, 250, 250));
         buttonVoltarEspecialidade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/img/right-arrow-red.png"))); // NOI18N
+        buttonVoltarEspecialidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonVoltarEspecialidadeActionPerformed(evt);
+            }
+        });
         panelMedico.add(buttonVoltarEspecialidade);
         buttonVoltarEspecialidade.setBounds(320, 330, 80, 40);
 
@@ -261,13 +270,68 @@ public class DialogMedico extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_textEmail1ActionPerformed
 
+    private void buttonEnviarEspecialidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEnviarEspecialidadeActionPerformed
+        java.util.List<String> especialidadesDoMedico = listaEspecialidade.getSelectedValuesList();
+
+        for (String e : especialidadesDoMedico) {
+            selecionadas.add(e);
+        }
+        for (Especialidade e : especialidadesNSelecionadas) {
+            if (especialidadesDoMedico.contains(e.getNome())) {
+                especialidadesSelecionadas.add(e);
+            }
+        }
+
+        listaDasEspecialidadesDoMedico.clear();
+        listaDasEspecialidadesDoMedico.addAll(selecionadas);
+        listaEspecialidadeMedico.setModel(listaDasEspecialidadesDoMedico);
+
+        int[] excluir = listaEspecialidade.getSelectedIndices();
+        for (int e : excluir) {
+            listaEspecialidadesModel.remove(e);
+            especialidades.remove(e);
+
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonEnviarEspecialidadeActionPerformed
+
+    private void buttonVoltarEspecialidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonVoltarEspecialidadeActionPerformed
+
+        java.util.List<String> removerEspecialidades = listaEspecialidadeMedico.getSelectedValuesList();
+
+        for (String e : removerEspecialidades) {
+            especialidades.add(e);
+        }
+        for (Especialidade e : especialidadesNSelecionadas) {
+            if (removerEspecialidades.contains(e.getNome())) {
+                especialidadesSelecionadas.remove(e);
+            }
+        }
+
+        listaEspecialidadesModel.clear();
+        listaEspecialidadesModel.addAll(especialidades);
+        listaEspecialidade.setModel(listaEspecialidadesModel);
+
+        int[] excluir = listaEspecialidadeMedico.getSelectedIndices();
+        for (int e : excluir) {
+            listaDasEspecialidadesDoMedico.remove(e);
+            selecionadas.remove(e);
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonVoltarEspecialidadeActionPerformed
+
     private void atualizar() {
         medico.setNome(textNome.getText());
         medico.setCrm(textCrm.getText());
         medico.setTelefone(textTelefone.getText());
         medico.setEmail(textEmail1.getText());
         medico.setDataDeNascimento(textDataDeNascimento.getText());
-
+        medico.setEspecialidades(especialidadesSelecionadas);
+        MedicoDAO.atualizar(medico);
+        
+        
         if (validarCadastro()) {
             MedicoDAO.atualizar(medico);
             JOptionPane.showMessageDialog(
@@ -287,6 +351,7 @@ public class DialogMedico extends javax.swing.JDialog {
         medico.setTelefone(textTelefone.getText());
         medico.setEmail(textEmail1.getText());
         medico.setDataDeNascimento(textDataDeNascimento.getText());
+        medico.setEspecialidades(especialidadesSelecionadas);
 
         if (validarCadastro()) {
             MedicoDAO.gravar(medico);
@@ -372,4 +437,30 @@ public class DialogMedico extends javax.swing.JDialog {
     private javax.swing.JTextField textNome;
     private javax.swing.JTextField textTelefone;
     // End of variables declaration//GEN-END:variables
+
+    private void atualizarListasEspecialidades() {
+        especialidades = EspecialidadeDAO.getListaDeNomes();
+        listaEspecialidadesModel.addAll(especialidades);
+        listaEspecialidade.setModel(listaEspecialidadesModel);
+        if (tipoOperacao == TipoOperacao.ADICIONAR) {
+
+        } else {
+            especialidadesSelecionadas = medico.getEspecialidades();
+            selecionadas = medico.getListaDeEspecialidadesDoMedico();
+            listaDasEspecialidadesDoMedico.clear();
+            listaDasEspecialidadesDoMedico.addAll(selecionadas);
+            listaEspecialidadeMedico.setModel(listaDasEspecialidadesDoMedico);
+
+            int i = 0;
+            for (String e : selecionadas) {
+                if (especialidades.contains(e)) {
+                    especialidades.remove(e);
+                }
+            }
+            listaEspecialidadesModel.clear();
+            listaEspecialidadesModel.addAll(especialidades);
+
+        }
+
+    }
 }

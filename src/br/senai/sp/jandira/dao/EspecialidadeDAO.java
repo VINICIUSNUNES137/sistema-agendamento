@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -90,12 +91,10 @@ public class EspecialidadeDAO {
             }
         }
         atualizarArquivo();
-        
 
         return false;
     }
 
-    
     private static void atualizarArquivo() {
         //reconstruir um arquivo atualizado
         //sem o plano removido
@@ -105,32 +104,31 @@ public class EspecialidadeDAO {
 
         try {
             boolean criou = arquivoTemp.createNewFile();
-            
+
             BufferedWriter bwTemp = Files.newBufferedWriter(
                     PATH_TEMP,
                     StandardOpenOption.APPEND,
                     StandardOpenOption.WRITE);
-            
-            for(Especialidade e : especialidades) {
+
+            for (Especialidade e : especialidades) {
                 bwTemp.write(e.getEspecialidadeSeparadoPorPontoEVirgula());
                 bwTemp.newLine();
             }
-            
+
             bwTemp.close();
-            
+
             arquivoAtual.delete();
             arquivoTemp.renameTo(arquivoAtual);
-            
+
         } catch (IOException ex) {
             JOptionPane.showConfirmDialog(
-                    null, 
-                    "Ocorreu um erro ao criar o arquivo", 
-                    "Erro", 
+                    null,
+                    "Ocorreu um erro ao criar o arquivo",
+                    "Erro",
                     JOptionPane.ERROR_MESSAGE);
         }
     }
-    
-    
+
     public static ArrayList<Especialidade> listarTodos() {
         return especialidades;
     }
@@ -159,10 +157,9 @@ public class EspecialidadeDAO {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ocorreu um erro para essa ação");
 
-        } 
+        }
 
     }
-    
 
     public static DefaultTableModel getTableModel() {
 
@@ -182,4 +179,16 @@ public class EspecialidadeDAO {
         return tableModel;
     }
 
+    public static ArrayList<String> getListaDeNomes() {
+        ArrayList<String> dados = new ArrayList<>();
+        for (Especialidade e : especialidades) {
+            dados.add(e.getNome());
+        }
+        DefaultListModel<String> ListaModel = new DefaultListModel<>();
+
+        ListaModel.addAll(dados);
+
+        return dados;
+
+    }
 }

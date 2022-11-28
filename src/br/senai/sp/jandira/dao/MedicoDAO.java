@@ -1,5 +1,6 @@
 package br.senai.sp.jandira.dao;
 
+import br.senai.sp.jandira.model.Especialidade;
 import br.senai.sp.jandira.model.Medico;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -106,18 +107,26 @@ public class MedicoDAO {
             String linha = "";
 
             linha = br.readLine();
-            int i = 0;
-
 
             while (linha != null && !linha.isEmpty()) {
                 String[] linhaVetor = linha.split(";");
+
+                ArrayList<Especialidade> especialidades = new ArrayList<>();
+                int i = 0;
+
+                while (linhaVetor.length > i + 6) {
+                especialidades.add(EspecialidadeDAO.getEspecialidade(Integer.valueOf(linhaVetor[6+i])));
+                    i++;
+                }
+
                 Medico medico = new Medico(
                         Integer.valueOf(linhaVetor[0]), //codigo
                         linhaVetor[1], // nome
                         linhaVetor[2], // crm
                         linhaVetor[3], // telefone
                         linhaVetor[4], // email
-                        linhaVetor[5] //data de nascimento.
+                        linhaVetor[5], //data de nascimento.
+                        especialidades
                 );
 
                 medicos.add(medico);
