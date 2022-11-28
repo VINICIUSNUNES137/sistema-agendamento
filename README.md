@@ -1,8 +1,6 @@
 # **SISTEMA DE AGENDAMENTO**
 
-![](./img/screenshot.png)
-
-## [Clique aqui](./executavel/testeclinica.jar) para baixar o executável.
+![](./img/screenshot.PNG)
 
 ## **SOBRE**
 
